@@ -210,6 +210,7 @@ void get_filetype(char *filename, char *filetype) {
   
 }
 
+
 // 동적 컨텐츠를 제공하는 함수
 void serve_dynamic(int fd, char *filename, char *cgiargs) {
   char buf[MAXLINE], *emptylist[] = { NULL };
