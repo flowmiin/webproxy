@@ -169,7 +169,7 @@ void serve_static(int fd, char *filename, int filesize) {
   printf("Response headers:\n");
   printf("%s", buf);
 
-  srcfd = Open(filename, O_RDONLY, 0); // 파일을 여는 함수, 읽기 전용으로 연다. 성공시 0을 반환한다.
+  srcfd = Open(filename, O_RDONLY, 0); // 파일을 여는 함수, 읽기 전용으로 연다. 성공시 0이상을 반환한다.
 
   // srcfd로 지정된 디바이스 파일에서 0(물리주소) 부터 시작해서 filesize 바이트만큼을 0(start주소)으로 대응시킨다. PROT_READ는 페이지를 읽을 수 있다는 의미이고 MAP_PRIVATE는 다른 프로세스와 대응 영역을 공유하지 않는다는 뜻이다.
   // 파일이나 디바이스를 응용 프로그램의 주소 공간 메모리에 대응시킨다.
@@ -204,6 +204,9 @@ void get_filetype(char *filename, char *filetype) {
   // 연습문제 11.7
   else if(strstr(filename, ".mpg")) {
     strcpy(filetype, "image/mpg");
+  }
+  else if(strstr(filename, ".mp4")) {
+    strcpy(filetype, "video/mp4");
   }
   else
     strcpy(filetype, "text/plain");
