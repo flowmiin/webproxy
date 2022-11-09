@@ -24,6 +24,7 @@ int main(void) {
     sscanf(buf, "n1=%d", &n1);
     sscanf(p+1, "n2=%d", &n2);
   }
+  
 
   sprintf(content, "QUERY_STRING=%s", buf); //buf 문자열을 출력하고 content 변수에 buf를 저장한다.
   sprintf(content, "Welcome to add.com: "); // content에 문자열 저장
@@ -33,6 +34,9 @@ int main(void) {
   printf("Connection: close\r\n");
   printf("Content-length: %d\r\n",(int)strlen(content));
   printf("Content-type: text/html\r\n\r\n");
+  if (!strcasecmp(getenv("REQUEST_METHOD"), "HEAD")) {
+    return;
+  }
   printf("%s", content);
   fflush(stdout); // 입력 버퍼를 지워주는 함수, 버퍼는 장치와 장치 간의 데이터 전송을 할 때 원할하게 처리하기 위한 임시 데이터 저장 공간이다.
   exit(0);
